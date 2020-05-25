@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock%}</title>
+   <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Slabo+27px&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    $("input").addClass("form-control");
+    $("textarea").addClass("form-control");
+
+});
+</script>
+
+</head>
+{% load static %}
+<style>
+    body{
+font-family: 'Chelsea Market', cursive;
+    }
+    body {
+    background-image:url("/static/bg-l.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 800px;
+}
+    form    { background: #f6f6f6;
+    padding: 30px;}
+
+    .messages{
+    list-style: none;
+    background: #c8dee9;
+    padding: 6px;
+    text-align: center;
+    border-radius: 7px;
+    }
+    .messages .info
+    {
+    color: #4d3838;
+    font-weight: 400;
+    }
+    .pcolor{
+    color:#e356a9;
+    }
+    .gcolor{
+    color:#70d370;
+    }
+
+
+</style>
+<body>
+<div class="container mt-4">
+{% block body %}
+{% endblock %}
+</div>
+</body>
+</html>

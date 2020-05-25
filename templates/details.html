@@ -1,0 +1,46 @@
+{% extends 'main.html'%}
+{% block title%}  All Customer {% endblock%}
+{% block body %}
+<div class="bg-light p-3 border border-warning rounded">
+    <h1>ALl Records From Database</h1>
+    <a href="{% url 'addCustomer'%}" class="btn btn-info"> + Add Customer </a>
+    <span class="float-right">{{user}} <a href="{% url 'logout'%}" class="btn btn-danger">Logout</a></span>
+    <br>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li
+        {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <table class="table mt-4 table-bordered table-hover">
+        <tr class="bg-primary text-white">
+            <th>#</th>
+            <th>Photo</th>
+            <th>Name</th>
+
+            <th>Address</th>
+
+            <th>Action</th>
+        </tr>
+        {% for rec in all_rec%}
+        <tr>
+            <td> {{forloop.counter}}</td>
+
+            <td><img src="{{rec.photo.url}}" class="rounded-circle" width="40px" height="40px"></td>
+            <td> {{rec.name}}</td>
+
+            <td> {{rec.address}}</td>
+
+            <td>
+                <a href="{% url 'view' rec.id%}" class="btn btn-primary">view</a>
+                <a href="{% url 'editcus' rec.id%}" class="btn btn-info">Edit</a>
+                <a href="{% url 'delete' rec.id%}" class="btn btn-danger">Delete</a>
+
+            </td>
+        </tr>
+        {% endfor%}
+    </table>
+</div>
+{% endblock %}

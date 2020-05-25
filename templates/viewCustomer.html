@@ -1,0 +1,67 @@
+{% extends 'main.html'%}
+
+{% block title%} {{stu}} View Customer {% endblock%}
+{% block body %}
+<h1 class="text-center m-4">Stduent Information</h1>
+
+
+<br>
+<div class="row">
+
+    <div class="col-md-4">
+        <img src="{{one_student.photo.url}}" class="img-thumbnail" width="100%">
+        <div class="m-4"> </div>
+        <a href="{% url 'editcus' one_student.id%}" class="btn btn-info">Edit</a>
+      <a href="{% url 'delete' one_student.id%}" class="btn btn-danger">Delete</a>
+    </div>
+    <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-header bg-warning"> <span class="text-light">{{one_student}}</span>  Details <span class="float-right">{{user}} <a href="{% url 'logout'%}" class="btn btn-danger">Logout</a></span>
+</div>
+          <div class="card-body">
+              <table class="table table-bordered table-hover">
+            <tr>
+                <td>Student Name:</td>
+                <td>{{one_student.name}}</td>
+            </tr>
+            <tr>
+                <td>Mobile:</td>
+                <td>{{one_student.mobile}}</td>
+            </tr>
+
+            <tr>
+                <td>Mobile:</td>
+                <td>{{one_student.aadhar}}</td>
+            </tr>
+
+            <tr>
+                <td>Mobile:</td>
+                <td>{{one_student.address}}</td>
+            </tr>
+             <tr>
+                <td>email:</td>
+                <td>{{one_student.email}}</td>
+            </tr>
+             <tr>
+                <td>gender:</td>
+                <td>{{one_student.gender}}</td>
+             </tr>
+            <tr>
+                <td>course:</td>
+                <td>{{one_student.course}}</td>
+             </tr>
+
+        </table>
+
+
+          </div>
+          <div class="card-footer"><a href="/" class="btn btn-info">Back</a></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
