@@ -19,9 +19,8 @@
             <th>#</th>
             <th>Photo</th>
             <th>Name</th>
-
-            <th>Address</th>
-
+            <th>Roll No.</th>
+            <th>Active</th>
             <th>Action</th>
         </tr>
         {% for rec in all_rec%}
@@ -30,14 +29,12 @@
 
             <td><img src="{{rec.photo.url}}" class="rounded-circle" width="40px" height="40px"></td>
             <td> {{rec.name}}</td>
-
-            <td> {{rec.address}}</td>
-
+            <td> {{rec.rollno}}</td>
+            <td> {{rec.action}}</td>
             <td>
-                <a href="{% url 'view' rec.id%}" class="btn btn-primary">view</a>
+                <a href="{% url 'view' rec.slug rec.id%}" class="btn btn-primary">view</a>
                 <a href="{% url 'editcus' rec.id%}" class="btn btn-info">Edit</a>
                 <a href="{% url 'delete' rec.id%}" class="btn btn-danger">Delete</a>
-
             </td>
         </tr>
         {% endfor%}

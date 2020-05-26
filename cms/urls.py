@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('sms.urls')),
+    path('sms/',include('sms.urls')),
+    path('',include('home.urls')),
     path('login/', views.login_view, name='login_u'),
     path('logout/', views.logout_user, name='logout'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
