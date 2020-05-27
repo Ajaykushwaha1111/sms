@@ -29,5 +29,19 @@ class Question(models.Model):
 #     corrct=models.IntegerField(default=0)
 #     missed=models.IntegerField(default=0)
 
+class Help(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=10)
+    message = models.TextField()
+
+class Location(models.Model):
+    user =models.CharField(max_length=100, default=" ")
+    date = models.DateTimeField(auto_now=True)
+    location =models.CharField(max_length=100)
+    ip = models.CharField(max_length=20)
+
+
+
 
 

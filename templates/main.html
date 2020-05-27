@@ -9,11 +9,41 @@
 <script>
 $(document).ready(function(){
 
-    $("input").addClass("form-control");
+    $("input[type=text]").addClass("form-control");
+    $("input[type=number]").addClass("form-control");
+    $("input[type=email]").addClass("form-control");
+    $("input[type=password]").addClass("form-control");
     $("textarea").addClass("form-control");
     $("select").addClass("form-control");
+    $("option").addClass("form-control");
 
 });
+
+function runcounter(){
+    var timer2 = "15:01";
+    var interval = setInterval(function() {
+  var timer = timer2.split(':');
+  //by parsing integer, I avoid all extra string processing
+  var minutes = parseInt(timer[0], 10);
+  var seconds = parseInt(timer[1], 10);
+  --seconds;
+  minutes = (seconds < 0) ? --minutes : minutes;
+  if (minutes < 0) clearInterval(interval);
+  seconds = (seconds < 0) ? 59 : seconds;
+  seconds = (seconds < 10) ? '0' + seconds : seconds;
+  //minutes = (minutes < 10) ?  minutes : minutes;
+  $('.countdown').html(minutes + ':' + seconds);
+  timer2 = minutes + ':' + seconds;
+}, 1000);
+}
+function isMobileOnly(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                        return false;
+
+                return true;
+        }
+        //onkeypress="return isNumberKey(event);"
 </script>
 
 </head>

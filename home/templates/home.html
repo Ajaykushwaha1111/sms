@@ -2,6 +2,7 @@
 {% block title%}  Login {% endblock%}
 {% block body %}
 <div class="row">
+
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
         {% if messages %}
@@ -15,7 +16,7 @@
 
 
 
-        <form method="POST" enctype="multipart/form-data" class="rounded bg-white m-4">
+        <form  autocomplete="off" method="POST" enctype="multipart/form-data" class="rounded bg-white m-4">
          <h3 class="text-center m-4" style="color: #1c4aa0;;">
 
             Student <span class="pcolor">Log</span>in <span class="gcolor">Page</span></h3>
@@ -24,13 +25,17 @@
      {% csrf_token %}
 
 <!--            <div class="img-b" ><img src="{% static 'l.gif'%}" width="100%"></div>-->
-    <p><input type="number" name="username" placeholder="Roll No" class="form-control"></p>
+    <p><input type="number" name="username" autocomplete="off" placeholder="Roll No" class="form-control"></p>
     <p><input type="password" name="password" placeholder="password" class="form-control"></p>
 
     <button type="submit" class="btn btn-success">login</button>
+            <p></p>
+             <a href="{% url 'forget_password'%}"> Forget Password?</a>
             <p class="m-2">Don't Have Account?</p>
             <a href="{% url 'student_signup'%}" class="btn btn-primary">Register New Account</a>
 
+            <div class="text-center mt-4 mb-4"><a href="{% url 'help'%}" class="text-danger" > Need Help?</a>
+</div>
 </form>
 
     </div>
@@ -38,3 +43,4 @@
 </div>
 
 {% endblock %}
+

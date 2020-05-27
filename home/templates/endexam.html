@@ -9,26 +9,39 @@
         <table class="table table-striped table-hover table-bordered bg-white">
 
             <tr>
-        <td>Result :</td>
-        <td>PASS / FAIL</td>
-    </tr>
+                <td>Result :</td>
+                <td>PASS / FAIL</td>
+            </tr>
             <tr>
-        <td>Attempt :</td>
-        <td>{{attempt}}</td>
-    </tr>
-    <tr>
-        <td>Correct :</td>
-        <td>{{correct}}</td>
-    </tr>
-    <tr>
-        <td>missed :</td>
-        <td>{{missed}}</td>
-    </tr>
+                <td>Attempt Answer :</td>
+                <td>{{attempt}}</td>
+            </tr>
+            <tr>
+                <td>Correct Answer :</td>
+                <td>{{correct}}</td>
+            </tr>
+            <tr>
+                <td>Wrong Answer :</td>
+                <td>{{wrong}}</td>
+            </tr>
+            <tr>
+                <td>Missed Answer :</td>
+                <td>{{missed}}</td>
+            </tr>
+            <tr>
+                <td>Percentage :</td>
+                <td>{{myresult.percentage}} %</td>
+            </tr>
+            <tr>
+                <td>Status :</td>
+                <td>{{myresult.status}}</td>
+            </tr>
 
-</table>
+        </table>
+        <div class="float-right"><a href="{% url 'logouts'%}" class="btn btn-danger">Logout</a>
+        </div>
+
+        <div class="col-md-3"></div>
     </div>
 
-    <div class="col-md-3"></div>
-</div>
-
-{% endblock %}
+    {% endblock %}

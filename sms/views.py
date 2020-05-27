@@ -21,7 +21,7 @@ def addCustomer(request):
     if form.is_valid():
         form.save()
         messages.add_message(request, messages.INFO, 'Added Customer Successfully !')
-        return redirect('detail')
+        return redirect('details')
 
     data={
         'form':form,
@@ -30,7 +30,7 @@ def addCustomer(request):
     return render(request,'addc.html',data)
 
 
-def editCustomer(request,id=None):
+def editCustomer(request,id=None,slug=None):
     if not request.user.is_authenticated:
         return redirect('login_u')
 
@@ -39,23 +39,23 @@ def editCustomer(request,id=None):
     if form.is_valid():
         form.save()
         messages.add_message(request, messages.INFO, f'{stu}, Edited Successfully !')
-        return  redirect('/')
+        return  redirect('details')
     data = {
         'form': form
     }
 
     return render(request,'addc.html',data)
 
-def deleteCustomer(request,id=None):
+def deleteCustomer(request,slug=None,id=None):
     if not request.user.is_authenticated:
         return redirect('login_u')
     stu = Student.objects.get(id=id)
     if request.method=='POST':
         stu.delete()
-        return redirect('detail')
+        return redirect('details')
     return render(request,'delete.html',{'stu':stu})
 
-def viewCustomer(request,slug=None,id=None):
+def viewCustomer(request,id=None,slug=None):
     if not request.user.is_authenticated:
         return redirect('login_u')
     one_student = Student.objects.get(id=id)

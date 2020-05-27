@@ -1,48 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Ajay</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'main.html'%}
+{% block title%}Add customer {% endblock%}
+{% block body %}
 <script>
-    var timer2 = "15:01";
-var interval = setInterval(function() {
 
-
-  var timer = timer2.split(':');
-  //by parsing integer, I avoid all extra string processing
-  var minutes = parseInt(timer[0], 10);
-  var seconds = parseInt(timer[1], 10);
-  --seconds;
-  minutes = (seconds < 0) ? --minutes : minutes;
-  if (minutes < 0) clearInterval(interval);
-  seconds = (seconds < 0) ? 59 : seconds;
-  seconds = (seconds < 10) ? '0' + seconds : seconds;
-  //minutes = (minutes < 10) ?  minutes : minutes;
-  $('.countdown').html(minutes + ':' + seconds);
-  timer2 = minutes + ':' + seconds;
-}, 1000);
 
 </script>
-<div class="p-4 mb-2 text-center bg-info text-white">
-    <h1>Your College Name Here</h1>
-    <p>Course:Python Time: <span class="countdown"></span></p>
+{% load static %}
+
+<div class="p-4 mb-2 text-center bg-white text-primary">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static 'logo.png'%}" class="img-thumbnail" width="100%">
+        </div>
+        <div class="col-md-9">
+            <h1>AKS UNIVERSITY, SATNA</h1>
+            <h5 class="text-muted">The University with Difference</h5>
+            <p>Course:Python Time: <span class="countdown"></span></p>
+<!--            <p>Course:End Exam Time: <span class="endtime"></span></p>-->
+        </div>
+    </div>
+
     <p></p>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-2">
-            <h3>Python</h3>
+        <div class="col-sm-3 m-0 p-0">
+            <div class="card">
+            <img src="{{one_student.photo.url}}" class="img-thumbnail" width="100%">
+            <div class="card-body">
+                <h4 class="text-danger">{{one_student.name}}</h4>
+                <h4 class="text-primary">Roll No :{{one_student.rollno}}</h4>
+
+
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'logouts'%}" class="btn btn-danger">Logout</a></div>
+        </div>
 
         </div>
 
-        <div class="col-sm-10">
+        <div class="col-sm-9 m-0 p-0 pl-2">
             <form method="post">
                 {% csrf_token %}
+                {% if allQuestion %}
                 {% for q in allQuestion%}
                 <div class="one-question">
                     <div class="card">
@@ -69,6 +70,13 @@ var interval = setInterval(function() {
                 </div>
                 {% endfor%}
 
+                {% else%}
+                <li class="list-group-item">  There are no Question For This Course
+                            </li>
+                <br>
+                {% endif%}
+
+
                 <button type="button" onclick="saveQuestions();" class="btn btn-success">Finish Exam</button>
             </form>
         </div>
@@ -81,6 +89,7 @@ var interval = setInterval(function() {
 
 
 <script>
+runcounter();
     Questions =[]
     var Qdata =function(id,opt){
         this.id =id;
@@ -113,7 +122,6 @@ function saveQuestions(){
         contentType: 'application/json; charset=utf-8',
         data: {'data1': JSON.stringify(Questions)},
         success:function(data2){
-
         window.location = "{% url 'endexam'%}";
 
 
@@ -123,7 +131,5 @@ function saveQuestions(){
 }
 
 
-
 </script>
-</body>
-</html>
+{% endblock %}

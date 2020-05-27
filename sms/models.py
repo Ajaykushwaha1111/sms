@@ -30,13 +30,15 @@ class Student(models.Model):
     password = models.CharField(max_length=10, default="1234")
     slug = models.SlugField(unique=True)
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        img = Image.open(self.photo.path)
-        if img.height > 300 or img.weight > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.photo.path)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     img = Image.open(self.photo.path)
+    #     print(self.photo.path)
+    #     if img:
+    #         if img.height > 300 or img.weight > 300:
+    #             output_size = (300, 300)
+    #             img.thumbnail(output_size)
+    #             img.save(self.photo.path)
 
     def __str__(self):
         return self.name
@@ -51,8 +53,11 @@ def generate_password_randam():
 
 def generate_password_with_roll(sender, instance, *args, **kwargs):
     if instance.rollno == 100:
-        instance.slug = slugify(instance.name)
-
+        ss = Student.objects.filter(slug=instance.slug)
+        if ss:
+            instance.slug = slugify(instance.name) + str(instance.id)
+        else:
+            instance.slug = slugify(instance.name)
         s = Student.objects.last()
         if not s:
             id = 1
@@ -60,9 +65,19 @@ def generate_password_with_roll(sender, instance, *args, **kwargs):
             id = s.id
         instance.rollno = 100 + id
         instance.password = generate_password_randam()
-        instance.slug = slugify(instance.name)
+
 
     print('ho gya ')
 
 
 pre_save.connect(generate_password_with_roll, sender=Student)
+
+
+
+class Location_track(models.Model):
+    user =models.ForeignKey(Student, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    location =models.CharField(max_length=100)
+    ip = models.CharField(max_length=20)
+
+
