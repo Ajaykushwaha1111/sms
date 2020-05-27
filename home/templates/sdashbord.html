@@ -2,14 +2,14 @@
 
 {% block title%} {{stu}} View Customer {% endblock%}
 {% block body %}
-<h1 class="text-center m-4">Stduent Information</h1>
+<h1 class="text-center text-white m-4">Stduent Information</h1>
 
 
 <br>
 <div class="row">
 
 
-    <div class="col-md-6">
+    <div class="col-xm-12 col-xm-12 col-md-6 col-lg-6">
 
         <div class="card">
             <div class="card-header">
@@ -67,13 +67,13 @@
         </div>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-xm-12 col-xm-12 col-md-6 col-lg-6">
         <div class="card">
-            <div class="card-header bg-warning"><span class="text-light">{{one_student}}</span> Details <span
-                    class="float-right">{{user}}
-                <a href="{% url 'logouts'%}" class="btn btn-danger">Logout</a>
-                <a href="{% url 'change_password'%}" class="btn btn-danger">Change Password</a>
-            </span>
+            <div class="card-header bg-warning">
+
+
+                <a href="{% url 'change_password'%}" class="btn btn-dark">Change Password</a>
+                <a href="{% url 'logouts'%}" class="btn btn-danger float-right">Logout</a>
             </div>
             <div class="card-body">
                 <form method="post" action="{% url 'startexam'%}">
@@ -94,6 +94,15 @@
                             <td colspan="2">
                                 <button type="submit" class="btn btn-primary">Start Exam</button>
 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <ul>
+                                <li>1) You have 15 Question </li>
+                                <li>2) You have 15 Minete Time to solve it after 15 Minete Your Form is Saved </li>
+                                <li>3) Each Question has 1 Number </li>
+                                </ul>
                             </td>
                         </tr>
                     </table>

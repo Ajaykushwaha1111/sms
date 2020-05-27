@@ -5,7 +5,7 @@ urlpatterns = [
     path('add/',views.addCustomer, name='addCustomer'),
     path('edit/<int:id>/',views.editCustomer, name='editcus'),
     path('delete/<int:id>/',views.deleteCustomer, name='delete'),
-    path('view/<int:id>/',views.viewCustomer, name='view'),
+    path('view/<slug>/<int:id>/',views.viewCustomer, name='view'),
 
 ]
 

@@ -8,7 +8,9 @@ from sms.forms import StudentForm
 from django.contrib import messages
 from cms.utility import track
 
+from .forms import HelpForm, ChangePasswordForm, ForgetPasswordForm
 
+from .models import Help
 def home(request):
     if request.session.get('student_l'):
         return redirect('dashboard')
@@ -116,7 +118,6 @@ Hi, {name} \n
 Your account is activated \n
 Roll : {roll} \n
 Password :{pwd} \n
-
             """
             try:
                 m = send_mail('Your Account has been activated ',
@@ -127,9 +128,9 @@ Password :{pwd} \n
                     messages.add_message(request, messages.INFO, f'Check Your Mail {email1} For access details !')
 
             except:
-                messages.add_message(request, messages.INFO, f'Your Mail Correct {email1} For access details !')
-                s = Student.objects.last()
-                s.delete()
+                messages.add_message(request, messages.INFO, f'Internet Connection  Problem  Access Failed !')
+                # s = Student.objects.last()
+                # s.delete()
         messages.add_message(request, messages.INFO, 'Added Customer Successfully !')
         return redirect('home')
 
@@ -160,35 +161,7 @@ def dashboard_student(request):
     return render(request, 'sdashbord.html', data)
 
 
-# import json
-# def count_quetion(request):
-#     res=False
-#     data = json.loads(request.GET.get('data1', ''))
-#     correct = 0
-#     attempt =0
-#
-#     for dd in data:
-#         q =Question.objects.filter(id=int(dd['id']),correct_answer=dd['opt'])
-#         if q:
-#             correct =correct+1
-#         attempt = attempt + 1
-#
-#     result ={
-#         'attempt':attempt,
-#         'correct':correct,
-#         'missed':attempt-correct
-#     }
-#
-#     if result:
-#         request.session['exam_result'] = result
-#         res =True
-#     exam_result =request.session.get('exam_result')
-#     print(exam_result)
-#
-#     return HttpResponse('/')
-from .forms import HelpForm, ChangePasswordForm, ForgetPasswordForm
 
-from .models import Help
 
 
 def help(request):

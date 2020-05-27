@@ -32,7 +32,7 @@
             <td> {{rec.rollno}}</td>
             <td> {{rec.action}}</td>
             <td>
-                <a href="{% url 'view'  rec.id%}" class="btn btn-primary">view</a>
+                <a href="{% url 'view' rec.slug rec.id%}" class="btn btn-primary">view</a>
                 <a href="{% url 'editcus'  rec.id%}" class="btn btn-info">Edit</a>
                 <a href="{% url 'delete'  rec.id%}" class="btn btn-danger">Delete</a>
             </td>

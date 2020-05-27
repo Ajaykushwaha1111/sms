@@ -6,6 +6,6 @@
     {% csrf_token %}
     <h1>Are You Want To Delete? <span class="text-info">{{stu}}</span> </h1>
     <button class="btn btn-danger" type="submit">Yes</button>
-    <a href="\" class="btn btn-info">No..</a>
+    <a href="{% url 'details'%}" class="btn btn-info">No..</a>
 </form>
 {% endblock%}

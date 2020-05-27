@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from sms.forms import StudentForm
 from sms.models import Student
-from django.contrib.auth import authenticate,login,logout
+
 def details(request):
     if not request.user.is_authenticated:
         return redirect('login_u')

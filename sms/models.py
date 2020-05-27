@@ -44,27 +44,27 @@ class Student(models.Model):
         return self.name
 
 
-def generate_password_randam():
+def generate_password_randam(N):
     import random
     import string
-    password = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=8))
+    password = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=N))
     return password
 
 
 def generate_password_with_roll(sender, instance, *args, **kwargs):
     if instance.rollno == 100:
-        ss = Student.objects.filter(slug=instance.slug)
-        if ss:
-            instance.slug = slugify(instance.name) + str(instance.id)
+        stu =Student.objects.filter(slug=instance.name)
+        if not stu:
+            instance.slug =str(slugify(instance.name) + str(generate_password_randam(4)))
         else:
-            instance.slug = slugify(instance.name)
+            instance.slug = str(slugify(instance.name))
         s = Student.objects.last()
         if not s:
             id = 1
         else:
             id = s.id
         instance.rollno = 100 + id
-        instance.password = generate_password_randam()
+        instance.password = generate_password_randam(8)
 
 
     print('ho gya ')
